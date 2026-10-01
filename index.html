@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#100d0a">
+  <meta name="description" content="Uma jornada autêntica pela culinária árabe no Maktub, em Guarulhos. Pratos sírios, rodízio e hospitalidade para compartilhar.">
+  <title>Maktub — Uma jornada pela culinária árabe</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #100d0a;
+      --ink-soft: #17120e;
+      --ink-card: #1c1712;
+      --ink-raised: #211b15;
+      --line: rgba(221, 176, 58, .16);
+      --gold: #dfb63e;
+      --gold-soft: #f0d37b;
+      --cream: #f4ecdc;
+      --muted: #b5aa98;
+      --muted-dark: #796f61;
+      --serif: "Cormorant Garamond", Georgia, serif;
+      --sans: "DM Sans", Arial, sans-serif;
+      --max: 1180px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body { margin: 0; background: var(--ink); color: var(--cream); font-family: var(--sans); font-size: 14px; line-height: 1.65; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    img { display: block; max-width: 100%; }
+    .container { width: min(var(--max), calc(100% - 48px)); margin-inline: auto; }
+    .eyebrow { display: flex; align-items: center; gap: 11px; color: var(--gold); font-size: 10px; font-weight: 700; letter-spacing: .24em; text-transform: uppercase; }
+    .eyebrow::before, .eyebrow::after { content: ""; width: 26px; height: 1px; background: var(--gold); opacity: .65; }
+    .eyebrow.left::before { display: none; }
+    .section-heading { margin: 14px 0 12px; font: 500 clamp(38px, 5.3vw, 60px)/.98 var(--serif); letter-spacing: -.025em; }
+    .section-heading span, .gold { color: var(--gold-soft); }
+    .section-intro { max-width: 580px; margin: 0 auto; color: var(--muted); font-size: 13px; }
+    .center { text-align: center; }
+    .section { position: relative; padding: 100px 0; overflow: hidden; }
+    .section-grid { background-color: #15110d; background-image: linear-gradient(rgba(223,182,62,.025) 1px, transparent 1px), linear-gradient(90deg, rgba(223,182,62,.025) 1px, transparent 1px); background-size: 24px 24px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; padding: 0 23px; border: 1px solid var(--gold); border-radius: 999px; background: var(--gold); color: #171107; font-size: 10px; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; transition: transform .2s, background .2s, color .2s; cursor: pointer; }
+    .btn:hover { transform: translateY(-2px); background: var(--gold-soft); }
+    .btn.dark { border-color: rgba(223,182,62,.48); background: rgba(15,12,9,.55); color: var(--gold-soft); }
+    .btn.dark:hover { background: var(--gold); color: #171107; }
+    .btn.small { min-height: 40px; padding: 0 18px; font-size: 9px; }
+    .icon { width: 14px; height: 14px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* Header */
+    .site-header { position: absolute; z-index: 10; inset: 0 0 auto; height: 82px; border-bottom: 1px solid rgba(255,255,255,.07); }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; height: 100%; }
+    .brand { display: inline-flex; align-items: center; min-width: 144px; }
+    .brand img { width: 112px; height: auto; }
+    .nav { display: flex; align-items: center; gap: clamp(15px, 2vw, 28px); }
+    .nav a { color: #ded2bd; font-size: 9px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; transition: color .2s; }
+    .nav a:hover, .nav a.active { color: var(--gold); }
+    .header-actions { display: flex; align-items: center; gap: 10px; }
+    .menu-toggle { display: none; width: 42px; height: 42px; border: 1px solid var(--line); border-radius: 50%; background: #17120e; color: var(--gold); cursor: pointer; }
+
+    /* Hero */
+    .hero { position: relative; min-height: 710px; padding: 140px 0 88px; display: grid; align-items: center; isolation: isolate; overflow: hidden; }
+    .hero::before { content: ""; position: absolute; z-index: -2; inset: 0; background: radial-gradient(ellipse at 73% 40%, rgba(124,79,19,.2), transparent 40%), radial-gradient(ellipse at 12% 10%, rgba(120,73,24,.1), transparent 31%), linear-gradient(110deg, #0e0b08 4%, #15100b 56%, #0d0a07 100%); }
+    .hero::after { content: ""; position: absolute; z-index: -1; inset: 0; opacity: .23; background-image: linear-gradient(45deg, transparent 48%, rgba(212,165,50,.08) 49%, rgba(212,165,50,.08) 50%, transparent 51%), linear-gradient(-45deg, transparent 48%, rgba(212,165,50,.06) 49%, rgba(212,165,50,.06) 50%, transparent 51%); background-size: 54px 54px; mask-image: linear-gradient(90deg, transparent, #000); }
+    .hero-layout { display: grid; grid-template-columns: minmax(0, .95fr) minmax(380px, 1.05fr); align-items: center; gap: clamp(42px, 8vw, 110px); }
+    .hero-copy { position: relative; z-index: 2; padding-top: 14px; }
+    .location-pill { display: inline-flex; align-items: center; gap: 8px; padding: 7px 13px; border: 1px solid rgba(223,182,62,.35); border-radius: 999px; color: var(--gold-soft); font-size: 9px; letter-spacing: .16em; text-transform: uppercase; }
+    .location-pill .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 10px var(--gold); }
+    .hero h1 { max-width: 640px; margin: 26px 0 18px; font: 500 clamp(60px, 7.5vw, 91px)/.88 var(--serif); letter-spacing: -.045em; }
+    .hero h1 span { display: block; color: var(--gold-soft); }
+    .hero-copy > p { max-width: 420px; margin: 0; color: #c2b7a5; font-size: 14px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .rating-row { display: flex; align-items: center; gap: 13px; margin-top: 28px; color: #bdb19f; font-size: 9px; letter-spacing: .1em; text-transform: uppercase; }
+    .stars { color: var(--gold); letter-spacing: .12em; font-size: 12px; }
+    .rating-row .divider { height: 13px; width: 1px; background: #53432a; }
+    .hero-visual { position: relative; min-height: 480px; }
+    .hero-photo { position: absolute; inset: 4px 30px 4px 18px; overflow: hidden; border: 1px solid rgba(223,182,62,.34); border-radius: 48% 48% 8px 8px; box-shadow: 0 24px 80px rgba(0,0,0,.5); }
+    .hero-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(13,10,7,.07), rgba(13,10,7,.48)), linear-gradient(90deg, rgba(11,9,7,.14), transparent 65%); }
+    .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 48%; filter: saturate(.8) brightness(.77); }
+    .hero-photo-caption { position: absolute; z-index: 1; left: 24px; bottom: 25px; color: white; font: 500 22px/1.1 var(--serif); }
+    .hero-photo-caption small { display: block; margin-bottom: 7px; color: var(--gold-soft); font: 700 8px var(--sans); letter-spacing: .22em; text-transform: uppercase; }
+    .hero-seal { position: absolute; z-index: 2; top: 26px; right: 0; display: grid; place-items: center; width: 112px; height: 112px; padding: 16px; border: 1px solid rgba(223,182,62,.5); border-radius: 50%; background: #17110b; color: var(--gold-soft); text-align: center; font: 500 15px/1 var(--serif); transform: rotate(9deg); }
+    .hero-seal strong { display: block; margin-top: 5px; font: 700 7px/1.4 var(--sans); letter-spacing: .15em; text-transform: uppercase; }
+    .hero-dish { position: absolute; z-index: 2; left: -22px; bottom: 34px; width: 156px; height: 156px; padding: 7px; border: 1px solid rgba(223,182,62,.6); border-radius: 50%; background: #17120e; box-shadow: 0 18px 35px rgba(0,0,0,.48); }
+    .hero-dish img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+    .scroll-cue { position: absolute; bottom: 24px; left: 50%; display: grid; justify-items: center; gap: 7px; color: #978970; font-size: 8px; letter-spacing: .22em; text-transform: uppercase; transform: translateX(-50%); }
+    .scroll-cue i { display: block; width: 16px; height: 25px; border: 1px solid rgba(223,182,62,.45); border-radius: 12px; position: relative; }
+    .scroll-cue i::after { content: ""; position: absolute; top: 5px; left: 6px; width: 2px; height: 5px; border-radius: 2px; background: var(--gold); }
+
+    /* Story */
+    .story { padding: 100px 0; background: #0d0b09; }
+    .story-layout { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: clamp(40px, 8vw, 95px); }
+    .story-visual { position: relative; min-height: 440px; }
+    .story-main { position: absolute; inset: 0 36px 28px 0; overflow: hidden; border-radius: 5px 65px 5px 5px; }
+    .story-main img { width: 100%; height: 100%; object-fit: cover; object-position: center; filter: brightness(.75) saturate(.86); }
+    .story-inset { position: absolute; right: 0; bottom: 0; width: 186px; height: 162px; padding: 6px; border: 1px solid var(--gold); border-radius: 4px; background: var(--ink); }
+    .story-inset img { width: 100%; height: 100%; object-fit: cover; }
+    .story-score { position: absolute; right: 0; top: 26px; padding: 13px 16px; border: 1px solid rgba(223,182,62,.27); border-radius: 4px; background: rgba(17,13,9,.93); }
+    .story-score b { display: block; color: var(--gold-soft); font: 500 30px/.9 var(--serif); }
+    .story-score span { display: block; margin-top: 5px; color: var(--muted); font-size: 8px; letter-spacing: .1em; text-transform: uppercase; }
+    .story-copy .section-heading { max-width: 470px; }
+    .story-copy > p { margin: 18px 0 0; color: var(--muted); font-size: 13px; }
+    .story-points { display: grid; gap: 17px; margin: 28px 0 30px; }
+    .story-point { display: grid; grid-template-columns: 38px 1fr; align-items: start; gap: 13px; }
+    .point-icon { display: grid; place-items: center; width: 36px; height: 36px; border: 1px solid rgba(223,182,62,.22); border-radius: 9px; background: rgba(223,182,62,.08); color: var(--gold); font-size: 15px; }
+    .story-point b { display: block; margin: 1px 0 3px; color: var(--cream); font: 500 18px/1.05 var(--serif); }
+    .story-point p { margin: 0; color: var(--muted); font-size: 11px; line-height: 1.5; }
+
+    /* Menu */
+    .menu-section { padding: 96px 0 108px; }
+    .filter-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin: 27px 0 32px; }
+    .filter-chip { padding: 9px 15px; border: 1px solid rgba(223,182,62,.19); border-radius: 999px; background: transparent; color: #c6b99f; font-size: 9px; letter-spacing: .1em; text-transform: uppercase; cursor: pointer; transition: .2s; }
+    .filter-chip:hover, .filter-chip.selected { border-color: var(--gold); background: var(--gold); color: #1b1408; }
+    .food-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .food-card { overflow: hidden; border: 1px solid rgba(255,255,255,.06); border-radius: 9px; background: #0e0b09; transition: transform .25s, border-color .25s; }
+    .food-card:hover { transform: translateY(-5px); border-color: rgba(223,182,62,.45); }
+    .food-card.hidden { display: none; }
+    .food-image { position: relative; height: 190px; overflow: hidden; background: #251d15; }
+    .food-image img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+    .food-card:hover .food-image img { transform: scale(1.06); }
+    .food-tag { position: absolute; top: 11px; left: 11px; padding: 5px 8px; border-radius: 999px; background: rgba(14,11,8,.83); color: var(--gold-soft); font-size: 8px; letter-spacing: .11em; text-transform: uppercase; }
+    .food-price { position: absolute; top: 11px; right: 11px; padding: 5px 9px; border-radius: 999px; background: var(--gold); color: #181209; font-size: 9px; font-weight: 700; }
+    .food-info { padding: 15px 15px 17px; }
+    .food-info h3 { margin: 0; font: 500 23px/1 var(--serif); }
+    .food-info p { min-height: 52px; margin: 9px 0 12px; color: #a99e8b; font-size: 10px; line-height: 1.5; }
+    .food-bottom { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding-top: 11px; border-top: 1px solid rgba(255,255,255,.07); }
+    .cashback { color: #bd9c49; font-size: 8px; letter-spacing: .07em; text-transform: uppercase; }
+    .food-bottom a { color: var(--gold); font-size: 9px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+    .menu-footnote { margin-top: 20px; color: var(--muted-dark); font-size: 10px; text-align: center; }
+
+    /* Rodizio */
+    .rodizio-section { padding: 92px 0; background: #100d0a; }
+    .rodizio-layout { display: grid; grid-template-columns: 1fr .8fr; align-items: center; gap: clamp(40px, 8vw, 100px); }
+    .rodizio-copy > p { max-width: 550px; color: var(--muted); font-size: 12px; }
+    .benefit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; margin: 25px 0 25px; }
+    .benefit { min-height: 102px; padding: 15px; border: 1px solid rgba(255,255,255,.06); border-radius: 10px; background: rgba(255,255,255,.025); }
+    .benefit .point-icon { margin-bottom: 10px; }
+    .benefit b { display: block; font: 500 18px/1 var(--serif); }
+    .benefit p { margin: 6px 0 0; color: var(--muted); font-size: 10px; }
+    .rodizio-poster { position: relative; max-width: 385px; justify-self: end; padding: 10px; border: 1px solid rgba(223,182,62,.46); border-radius: 7px; background: #1a130d; box-shadow: 0 25px 80px rgba(0,0,0,.4); transform: rotate(1.5deg); }
+    .rodizio-poster img { width: 100%; max-height: 485px; object-fit: contain; }
+
+    /* Sweets and drinks */
+    .tastes-section { padding: 92px 0 100px; background: #17120e; }
+    .sweet-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 15px; margin-top: 30px; }
+    .sweet-card { display: grid; grid-template-columns: 86px 1fr; gap: 13px; align-items: center; padding: 12px; border: 1px solid rgba(255,255,255,.06); border-radius: 8px; background: #100d0a; }
+    .sweet-card img { width: 86px; height: 86px; border-radius: 6px; object-fit: cover; }
+    .sweet-card h3 { margin: 0; font: 500 20px/1 var(--serif); }
+    .sweet-card p { margin: 7px 0; color: var(--muted); font-size: 9px; }
+    .sweet-card b { color: var(--gold-soft); font-size: 11px; }
+
+    /* Events and gallery */
+    .event-banner { position: relative; padding: 86px 0; background: linear-gradient(90deg, rgba(11,9,7,.93), rgba(11,9,7,.73)), url("assets/fachada.png") center 46% / cover; }
+    .event-banner::after { content: ""; position: absolute; inset: 13px; border: 1px solid rgba(223,182,62,.2); pointer-events: none; }
+    .event-inner { position: relative; z-index: 1; text-align: center; }
+    .event-inner .section-heading { margin-inline: auto; max-width: 620px; }
+    .event-inner p { max-width: 560px; margin: 13px auto 24px; color: #c5b9a4; font-size: 12px; }
+    .event-types { display: grid; grid-template-columns: repeat(4,1fr); gap: 11px; margin: 32px 0 27px; }
+    .event-type { padding: 19px 12px; border: 1px solid rgba(255,255,255,.07); border-radius: 9px; background: rgba(16,13,10,.79); }
+    .event-type .point-icon { margin: 0 auto 10px; }
+    .event-type b { display: block; font: 500 18px/1 var(--serif); }
+    .event-type p { margin: 6px 0 0; font-size: 9px; }
+    .gallery-section { padding: 95px 0 100px; }
+    .gallery-grid { display: grid; grid-template-columns: 1.15fr .82fr .82fr; grid-template-rows: 220px 220px; gap: 12px; margin-top: 32px; }
+    .gallery-item { position: relative; overflow: hidden; border-radius: 5px; background: #241c13; }
+    .gallery-item:first-child { grid-row: span 2; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s; }
+    .gallery-item:hover img { transform: scale(1.05); }
+    .gallery-item::after { content: ""; position: absolute; inset: 35% 0 0; background: linear-gradient(transparent, rgba(0,0,0,.55)); }
+    .gallery-item span { position: absolute; z-index: 1; bottom: 15px; left: 16px; color: white; font: 500 20px var(--serif); }
+
+    /* Reviews, visit, FAQ, footer */
+    .reviews-section { padding: 92px 0 100px; background: #15110d; }
+    .review-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-top: 32px; }
+    .review { min-height: 148px; padding: 19px; border: 1px solid rgba(255,255,255,.06); border-radius: 8px; background: #100d0a; }
+    .review-stars { color: var(--gold); font-size: 11px; letter-spacing: .14em; }
+    .review blockquote { margin: 12px 0 17px; color: #d4cabb; font: 400 18px/1.1 var(--serif); }
+    .review cite { color: var(--muted-dark); font-size: 9px; font-style: normal; letter-spacing: .13em; text-transform: uppercase; }
+    .visit-band { padding: 48px 0; background: #dcb63e; color: #17120b; text-align: center; }
+    .visit-band h2 { margin: 0 0 8px; font: 500 clamp(36px,4vw,52px)/.95 var(--serif); }
+    .visit-band p { margin: 0 auto 18px; max-width: 540px; font-size: 11px; }
+    .visit-band .btn { border-color: #17120b; background: #17120b; color: var(--gold-soft); }
+    .visit-band .btn.dark { background: transparent; color: #17120b; }
+    .visit-band .btn.dark:hover { background: #17120b; color: var(--gold-soft); }
+    .visit-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 9px; }
+    .location-section { padding: 94px 0 90px; }
+    .location-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 18px; margin-top: 30px; }
+    .map-card { position: relative; min-height: 350px; overflow: hidden; border: 1px solid rgba(255,255,255,.08); border-radius: 8px; background: linear-gradient(135deg, #29251f, #171512 70%); }
+    .map-lines { position: absolute; inset: -20%; transform: rotate(-12deg); opacity: .45; background: repeating-linear-gradient(0deg, transparent 0 35px, rgba(217,204,174,.19) 36px 38px, transparent 39px 75px), repeating-linear-gradient(90deg, transparent 0 51px, rgba(217,204,174,.14) 52px 54px, transparent 55px 100px); }
+    .map-lines::after { content: ""; position: absolute; inset: 30% -10%; transform: rotate(26deg); border-block: 16px solid rgba(111,145,134,.32); }
+    .map-pin { position: absolute; top: 47%; left: 50%; display: grid; place-items: center; width: 52px; height: 52px; border: 1px solid rgba(223,182,62,.52); border-radius: 50% 50% 50% 4px; background: #19140e; color: var(--gold); font-size: 19px; transform: translate(-50%,-50%) rotate(-45deg); box-shadow: 0 10px 20px #0008; }
+    .map-pin span { transform: rotate(45deg); }
+    .map-label { position: absolute; bottom: 18px; left: 18px; padding: 11px 14px; border: 1px solid rgba(223,182,62,.2); border-radius: 5px; background: #100d0de8; color: var(--cream); font: 500 17px var(--serif); }
+    .contact-stack { display: grid; gap: 10px; }
+    .contact-card { display: grid; grid-template-columns: 40px 1fr; align-items: center; gap: 12px; padding: 15px; border: 1px solid rgba(255,255,255,.06); border-radius: 8px; background: #14100d; }
+    .contact-card .point-icon { width: 38px; height: 38px; }
+    .contact-card small { display: block; color: var(--muted-dark); font-size: 8px; letter-spacing: .18em; text-transform: uppercase; }
+    .contact-card b, .contact-card a { display: block; margin-top: 3px; color: #e7ddcc; font-size: 11px; font-weight: 500; }
+    .hours-card { padding: 17px; border: 1px solid rgba(255,255,255,.06); border-radius: 8px; background: #14100d; }
+    .hours-card h3 { margin: 0 0 11px; color: var(--gold-soft); font: 500 21px var(--serif); }
+    .hours-row { display: flex; justify-content: space-between; gap: 12px; padding: 6px 0; border-top: 1px solid rgba(255,255,255,.055); color: #b9ad99; font-size: 9px; }
+    .hours-row b { color: #e1d6c4; font-weight: 500; }
+    .faq-section { padding: 84px 0 96px; background: #17120e; }
+    .faq-list { max-width: 760px; margin: 30px auto 0; }
+    .faq-list details { margin-bottom: 8px; border: 1px solid rgba(255,255,255,.07); border-radius: 7px; background: #100d0a; }
+    .faq-list summary { display: flex; justify-content: space-between; gap: 20px; padding: 16px 18px; color: #e6ddcf; font: 500 20px/1.1 var(--serif); cursor: pointer; list-style: none; }
+    .faq-list summary::-webkit-details-marker { display: none; }
+    .faq-list summary::after { content: "+"; color: var(--gold); font: 400 22px var(--sans); }
+    .faq-list details[open] summary::after { content: "−"; }
+    .faq-list details p { margin: 0; padding: 0 18px 17px; color: var(--muted); font-size: 11px; }
+    .footer { padding: 56px 0 22px; background: #2b1b10; background-image: linear-gradient(rgba(223,182,62,.025) 1px, transparent 1px), linear-gradient(90deg, rgba(223,182,62,.025) 1px, transparent 1px); background-size: 24px 24px; }
+    .footer-top { display: flex; align-items: center; justify-content: space-between; gap: 26px; padding: 22px 26px; border: 1px solid rgba(255,255,255,.05); border-radius: 12px; background: #25170f; }
+    .footer-top h3 { margin: 0; font: 500 28px/1 var(--serif); }
+    .footer-top p { margin: 7px 0 0; color: #b7a993; font-size: 10px; }
+    .footer-columns { display: grid; grid-template-columns: 1.4fr .8fr 1fr 1fr; gap: 45px; padding: 40px 0 32px; }
+    .footer-logo { width: 106px; margin-bottom: 14px; }
+    .footer-about p { max-width: 260px; margin: 0; color: #b7a993; font-size: 10px; }
+    .socials { display: flex; gap: 13px; margin-top: 17px; color: var(--gold-soft); font-size: 11px; }
+    .footer-col h4 { margin: 0 0 13px; color: var(--gold-soft); font-size: 9px; letter-spacing: .18em; text-transform: uppercase; }
+    .footer-col a, .footer-col p { display: block; margin: 7px 0; color: #b7a993; font-size: 10px; }
+    .footer-col a:hover { color: var(--gold-soft); }
+    .footer-bottom { display: flex; justify-content: space-between; gap: 15px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.07); color: #8f7e68; font-size: 9px; }
+    .whatsapp-float { position: fixed; z-index: 8; right: 24px; bottom: 22px; display: grid; place-items: center; width: 52px; height: 52px; border: 1px solid rgba(235,204,103,.65); border-radius: 50%; background: #cba533; color: #171208; box-shadow: 0 8px 25px #0007; font-size: 22px; transition: transform .2s; }
+    .whatsapp-float:hover { transform: translateY(-3px); }
+
+    @media (max-width: 980px) {
+      .container { width: min(var(--max), calc(100% - 36px)); }
+      .nav { gap: 13px; }
+      .nav a { font-size: 8px; }
+      .header-actions .btn { min-height: 38px; padding-inline: 13px; font-size: 8px; }
+      .hero-layout { grid-template-columns: 1fr .92fr; gap: 32px; }
+      .hero h1 { font-size: clamp(56px,8vw,76px); }
+      .food-grid { grid-template-columns: repeat(2,1fr); }
+      .sweet-grid { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width: 760px) {
+      html { scroll-padding-top: 72px; }
+      .container { width: min(var(--max), calc(100% - 30px)); }
+      .site-header { position: absolute; height: 70px; }
+      .brand { min-width: 0; }
+      .brand img { width: 102px; }
+      .header-actions .btn { display: none; }
+      .menu-toggle { display: grid; place-items: center; }
+      .nav { position: absolute; top: 69px; left: 15px; right: 15px; display: none; align-items: stretch; gap: 0; padding: 10px; border: 1px solid rgba(223,182,62,.2); border-radius: 9px; background: #14100ded; box-shadow: 0 18px 35px #0008; }
+      .nav.open { display: grid; }
+      .nav a { padding: 12px; border-bottom: 1px solid rgba(255,255,255,.045); font-size: 10px; }
+      .nav a:last-child { border-bottom: 0; }
+      .hero { min-height: auto; padding: 112px 0 75px; }
+      .hero-layout { grid-template-columns: 1fr; gap: 38px; }
+      .hero-copy { text-align: center; }
+      .hero-copy .location-pill { margin-inline: auto; }
+      .hero h1 { margin: 22px auto 15px; font-size: clamp(58px, 14vw, 76px); }
+      .hero-copy > p { margin-inline: auto; }
+      .hero-actions, .rating-row { justify-content: center; }
+      .hero-visual { min-height: 410px; width: min(100%, 490px); margin: 0 auto; }
+      .hero-photo { inset: 0 22px 0 20px; }
+      .hero-dish { left: 0; bottom: 20px; width: 118px; height: 118px; }
+      .hero-seal { right: -1px; top: 14px; width: 90px; height: 90px; font-size: 13px; }
+      .scroll-cue { display: none; }
+      .section { padding: 75px 0; }
+      .story-layout, .rodizio-layout, .location-grid { grid-template-columns: 1fr; }
+      .story-visual { min-height: 365px; order: 2; }
+      .story-copy { order: 1; }
+      .story-score { top: 12px; }
+      .rodizio-poster { justify-self: center; width: min(100%, 370px); }
+      .event-types { grid-template-columns: repeat(2,1fr); }
+      .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 250px 170px 170px; }
+      .gallery-item:first-child { grid-column: span 2; grid-row: span 1; }
+      .review-grid { grid-template-columns: 1fr 1fr; }
+      .footer-top { align-items: flex-start; flex-direction: column; }
+      .footer-columns { grid-template-columns: 1fr 1fr; gap: 25px 18px; }
+    }
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 57px; }
+      .hero-actions .btn { flex: 1 1 150px; }
+      .hero-visual { min-height: 350px; }
+      .rating-row { gap: 8px; font-size: 7px; }
+      .story-visual { min-height: 305px; }
+      .story-main { inset: 0 25px 24px 0; }
+      .story-inset { width: 137px; height: 120px; }
+      .food-grid { grid-template-columns: 1fr 1fr; gap: 9px; }
+      .food-image { height: 135px; }
+      .food-info { padding: 11px; }
+      .food-info h3 { font-size: 20px; }
+      .food-info p { min-height: 67px; font-size: 9px; }
+      .food-bottom { align-items: flex-start; flex-direction: column; }
+      .benefit-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+      .benefit { padding: 12px; }
+      .sweet-grid { grid-template-columns: 1fr; }
+      .event-types { gap: 8px; }
+      .event-type { padding: 14px 8px; }
+      .gallery-grid { grid-template-rows: 220px 140px 140px; gap: 8px; }
+      .review-grid { grid-template-columns: 1fr; }
+      .visit-actions .btn { flex: 1 1 145px; padding-inline: 12px; }
+      .location-grid { gap: 12px; }
+      .map-card { min-height: 280px; }
+      .footer-columns { grid-template-columns: 1fr 1fr; }
+      .footer-about { grid-column: span 2; }
+      .footer-bottom { flex-direction: column; }
+      .whatsapp-float { right: 14px; bottom: 14px; width: 46px; height: 46px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#inicio" aria-label="Maktub, início"><img src="assets/logo-gold.png" alt="Maktub — مكتوب"></a>
+      <nav class="nav" id="main-nav" aria-label="Navegação principal">
+        <a class="active" href="#inicio">Início</a><a href="#sobre">Sobre</a><a href="#pratos">Pratos</a><a href="#rodizio">Rodízio</a><a href="#sabores">Doces</a><a href="#eventos">Eventos</a><a href="#galeria">Galeria</a><a href="#avaliacoes">Avaliações</a><a href="#contato">Contato</a>
+      </nav>
+      <div class="header-actions"><a class="btn small" href="https://wa.me/5511944199999?text=Ol%C3%A1%2C%20gostaria%20de%20reservar%20uma%20mesa%20no%20Maktub." target="_blank" rel="noopener">Reservar mesa</a><button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="main-nav"><svg class="icon" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container hero-layout">
+        <div class="hero-copy">
+          <span class="location-pill"><i class="dot"></i> Guarulhos · Vila São José</span>
+          <h1>Uma jornada autêntica <span>pela culinária árabe</span></h1>
+          <p>Sabores tradicionais, experiência moderna. No coração de Guarulhos, cada prato chega à mesa com história e hospitalidade.</p>
+          <div class="hero-actions"><a class="btn" href="https://wa.me/5511944199999?text=Ol%C3%A1%2C%20gostaria%20de%20reservar%20uma%20mesa%20no%20Maktub." target="_blank" rel="noopener"><svg class="icon" viewBox="0 0 24 24"><path d="M4 8h16v12H4zM8 8V5h8v3M8 12v4M12 12v4M16 12v4"/></svg> Reservar mesa</a><a class="btn dark" href="https://pedido.anota.ai/loja/maktub-11?f=msa" target="_blank" rel="noopener"><svg class="icon" viewBox="0 0 24 24"><path d="M3 5h2l2.2 10.4a2 2 0 0 0 2 1.6h8.6a2 2 0 0 0 1.9-1.4L22 9H7M10 21h.01M18 21h.01"/></svg> Pedir delivery</a></div>
+          <div class="rating-row"><span class="stars">★★★★★</span><span>4,4 no Google</span><i class="divider"></i><span>Mais de 400 avaliações</span></div>
+        </div>
+        <div class="hero-visual" aria-label="Fachada do restaurante Maktub">
+          <figure class="hero-photo"><img src="assets/fachada.png" alt="Fachada amarela do restaurante Maktub em Guarulhos"><figcaption class="hero-photo-caption"><small>Uma casa de histórias</small>Bem-vindo ao Maktub</figcaption></figure>
+          <div class="hero-seal">Feito com <strong>tradição<br>e carinho</strong></div>
+          <div class="hero-dish"><img src="assets/fateh-misto.webp" alt="Fateh misto, prato sírio com carne, frango e arroz"></div>
+        </div>
+      </div>
+      <a class="scroll-cue" href="#sobre">Explore<i></i></a>
+    </section>
+
+    <section class="story" id="sobre">
+      <div class="container story-layout">
+        <div class="story-visual">
+          <div class="story-main"><img src="assets/fachada.png" alt="A entrada colorida do Maktub, em Vila São José"></div>
+          <div class="story-inset"><img src="assets/fateh-carne.webp" alt="Fateh de carne preparado no Maktub"></div>
+          <div class="story-score"><b>4,4</b><span>mais de 400 avaliações<br><span class="stars">★★★★★</span></span></div>
+        </div>
+        <div class="story-copy">
+          <div class="eyebrow left">Nossa história</div>
+          <h2 class="section-heading">Tradição árabe <span>servida com alma</span></h2>
+          <p>Aqui, cada prato é um convite. O Maktub nasceu do desejo de trazer para Guarulhos o calor da mesa árabe — aquela mesa farta, cheia de gente, onde ninguém sai com fome e todo mundo sai com história.</p>
+          <p>Reunimos receitas passadas de geração em geração, ingredientes escolhidos com cuidado e o tempero que não se aprende em livro: o do cuidado. Da brasa ao pão quentinho que chega à mesa, tudo é feito para ser lembrado.</p>
+          <div class="story-points">
+            <div class="story-point"><span class="point-icon">✦</span><div><b>Receitas tradicionais</b><p>Preparo artesanal e receitas que atravessam gerações.</p></div></div>
+            <div class="story-point"><span class="point-icon">✧</span><div><b>Ingredientes frescos</b><p>Escolhidos todos os dias para preservar o sabor de cada ingrediente.</p></div></div>
+            <div class="story-point"><span class="point-icon">⌂</span><div><b>Hospitalidade árabe</b><p>Você chega como visita e sai como família. Receber bem é a nossa cultura.</p></div></div>
+          </div>
+          <a class="btn dark small" href="#pratos">Conheça nossos sabores <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-grid menu-section" id="pratos">
+      <div class="container">
+        <div class="center"><div class="eyebrow">Pratos em destaque</div><h2 class="section-heading">Sabores que contam <span>histórias</span></h2><p class="section-intro">Uma seleção do que sai da nossa cozinha todos os dias — preparado na hora, com receitas que atravessaram gerações.</p></div>
+        <div class="filter-row" role="group" aria-label="Filtrar pratos">
+          <button class="filter-chip selected" type="button" data-filter="todos">Todos</button><button class="filter-chip" type="button" data-filter="entradas">Entradas</button><button class="filter-chip" type="button" data-filter="pratos">Pratos</button><button class="filter-chip" type="button" data-filter="combos">Combos</button><button class="filter-chip" type="button" data-filter="shawarma">Shawarmas</button><button class="filter-chip" type="button" data-filter="esfihas">Esfihas</button>
+        </div>
+        <div class="food-grid">
+          <article class="food-card" data-category="pratos"><div class="food-image"><img src="assets/fateh-carne.webp" alt="Fateh de carne com arroz, pão sírio torrado e castanhas" loading="lazy"><span class="food-tag">Pratos</span><span class="food-price">R$ 56,99</span></div><div class="food-info"><h3>Fateh de carne</h3><p>Arroz sírio, pão torrado, molho de tahine com coalhada, carne grelhada e castanhas na manteiga.</p><div class="food-bottom"><span class="cashback">10% cashback</span><a href="https://pedido.anota.ai/loja/maktub-11?f=msa" target="_blank" rel="noopener">Saiba mais&nbsp; ↗</a></div></div></article>
+          <article class="food-card" data-category="entradas"><div class="food-image"><img src="assets/muhammara.webp" alt="Muhammara, pasta árabe de pimentão e tahine" loading="lazy"><span class="food-tag">Entradas</span><span class="food-price">R$ 45,00</span></div><div class="food-info"><h3>Muhammara</h3><p>Pasta intensa de pimentão vermelho, tahine, azeite, cebola e temperos árabes. Acompanha pão sírio.</p><div class="food-bottom"><span class="cashback">10% cashback</span><a href="https://pedido.anota.ai/loja/maktub-11?f=msa" target="_blank" rel="noopener">Saiba mais&nbsp; ↗</a></div></div></article>
+          <article class="food-card" data-category="entradas"><div class="food-image"><img src="assets/falafel.webp" alt="Falafel dourado com molho tahine" loading="lazy"><span class="food-tag">Porções</span><span class="food-price">R$ 53,99</span></div><div class="food-info"><h3>Falafel</h3><p>Oito bolinhos crocantes de grão-de-bico e gergelim, com molho tahine e pão sírio.</p><div class="food-bottom"><span class="cashback">10% cashback</span><a href="https://pedido.anota.ai/loja/maktub-11?f=msa" target="_blank" rel="noopener">Saiba mais&nbsp; ↗</a></div></div></article>
+          <article class="food-card" data-category="combos"><div class="food-image"><img src="assets/combo-aleppo.webp" alt="Combo Aleppo com charutos, arroz, carne e vegetais" loading="lazy"><span class="food-tag">Combos</span><span class="food-price">R$ 69,99</span></div><div class="food-info"><h3>Aleppo</h3><p>Charutos, arroz sírio, carne assada com temperos árabes, shish tawook, pasta de alho e vegetais.</p><div class="food-bottom"><span class="cashback">10% cashback</span><a href="https://pedido.anota.ai/loja/maktub-11?f=msa" target="_blank" rel="noopener">Saiba mais&nbsp; ↗</a></div></div></article>
+          <article class="food-card" data-category="shawarma"><div class="food-image"><img src="assets/shawarma-carne.webp" alt="Shawarma de carne enrolado no pão sírio" loading="lazy"><span class="food-tag">Shawarmas</span><span class="food-price">R$ 52,90</span></div><div class="food-info"><h3>Shawarma de carne</h3><p>Carne temperada à moda síria no pão sírio, com tomate, picles, cebola, salsa e molho de tahine.</p><div class="food-bottom"><span class="cashback">10% cashback</span><a href="https://pedido.anota.ai/loja/maktub-11?f=msa" target="_blank" rel="noopener">Saiba mais&nbsp; ↗</a></div></div></article>
+          <article class="food-card" data-category="esfihas"><div class="food-image"><img src="assets/esfiha-carne-queijo.webp" alt="Esfiha de carne com queijo fresco" loading="lazy"><span class="food-tag">Salgados</span><span class="food-price">R$ 13,90</span></div><div class="food-info"><h3>Esfiha de carne e queijo</h3><p>Recheio de carne e queijo fresco, temperado à moda da casa.</p><div class="food-bottom"><span class="cashback">10% cashback</span><a href="https://pedido.anota.ai/loja/maktub-11?f=msa" target="_blank" rel="noopener">Saiba mais&nbsp; ↗</a></div></div></article>
+          <article class="food-card" data-category="entradas"><div class="food-image"><img src="assets/charuto-repolho.webp" alt="Charutos de folha de repolho com arroz e carne" loading="lazy"><span class="food-tag">Porções</span><span class="food-price">R$ 42,90</span></div><div class="food-info"><h3>Charuto de repolho</h3><p>Folhas de repolho enroladas uma a uma, recheadas com arroz e carne temperados à moda síria.</p><div class="food-bottom"><span class="cashback">10% cashback</span><a href="https://pedido.anota.ai/loja/maktub-11?f=msa" target="_blank" rel="noopener">Saiba mais&nbsp; ↗</a></div></div></article>
+          <article class="food-card" data-category="entradas"><div class="food-image"><img src="assets/kibe-cru-vegano.webp" alt="Kibe cru vegano com molho de tomate e especiarias" loading="lazy"><span class="food-tag">Porções</span><span class="food-price">R$ 45,99</span></div><div class="food-info"><h3>Kibe cru vegano</h3><p>Trigo de kibe, molho de tomate e pimentão com especiarias sírias. Acompanha pão sírio.</p><div class="food-bottom"><span class="cashback">10% cashback</span><a href="https://pedido.anota.ai/loja/maktub-11?f=msa" target="_blank" rel="noopener">Saiba mais&nbsp; ↗</a></div></div></article>
+        </div>
+        <p class="menu-footnote">Preços e disponibilidade podem mudar. Consulte o cardápio atualizado para pedir.</p>
+      </div>
+    </section>
+
+    <section class="rodizio-section" id="rodizio">
+      <div class="container rodizio-layout">
+        <div class="rodizio-copy">
+          <div class="eyebrow left">Experiência do rodízio</div><h2 class="section-heading">A mesa farta <span>que nunca acaba</span></h2>
+          <p>Nosso rodízio é um convite para experimentar tudo, no seu ritmo. Pratos preparados na hora, receitas tradicionais e um serviço atencioso — do primeiro mezze à sobremesa.</p>
+          <div class="benefit-grid">
+            <div class="benefit"><span class="point-icon">⌁</span><b>Coma à vontade</b><p>Sabores sírios para compartilhar, servidos à mesa.</p></div>
+            <div class="benefit"><span class="point-icon">♨</span><b>Preparados na hora</b><p>Cada prato sai fresquinho da cozinha, direto para a sua mesa.</p></div>
+            <div class="benefit"><span class="point-icon">✦</span><b>Receitas tradicionais</b><p>Um cardápio que celebra a cozinha árabe de verdade.</p></div>
+            <div class="benefit"><span class="point-icon">♧</span><b>Famílias e comemorações</b><p>A mesa perfeita para reunir quem você ama.</p></div>
+          </div>
+          <a class="btn" href="https://wa.me/5511944199999?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20sobre%20o%20rod%C3%ADzio%20do%20Maktub." target="_blank" rel="noopener">Reservar rodízio&nbsp; ↗</a>
+        </div>
+        <div class="rodizio-poster"><img src="assets/rodizio-original.png" alt="Cartaz do rodízio Maktub com opções de entradas, pastas, esfihas e salgados" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section class="tastes-section" id="sabores">
+      <div class="container">
+        <div class="center"><div class="eyebrow">Doces & bebidas</div><h2 class="section-heading">Um final doce, <span>um brinde ao Oriente</span></h2><p class="section-intro">Doces árabes para acompanhar o café, ou bebidas geladas para completar a refeição.</p></div>
+        <div class="sweet-grid">
+          <article class="sweet-card"><img src="assets/ninho-pistache.webp" alt="Doce árabe Ninho de pistache" loading="lazy"><div><h3>Ninho Pistache</h3><p>Doce árabe de pistache</p><b>R$ 14,90</b></div></article>
+          <article class="sweet-card"><img src="assets/baklava.webp" alt="Baklava de baunilha" loading="lazy"><div><h3>Baklava Baunilha</h3><p>Uma doçura clássica do Oriente</p><b>R$ 14,90</b></div></article>
+          <article class="sweet-card"><img src="assets/ninho-damasco.webp" alt="Doce árabe Ninho de damasco" loading="lazy"><div><h3>Ninho Damasco</h3><p>Doce árabe com damasco</p><b>R$ 14,90</b></div></article>
+          <article class="sweet-card"><img src="assets/coca-zero.webp" alt="Lata de Coca-Cola Zero" loading="lazy"><div><h3>Coca-Cola Zero</h3><p>310 ml · Bebida gelada</p><b>R$ 9,90</b></div></article>
+        </div>
+        <div class="center" style="margin-top:25px"><a class="btn dark small" href="https://pedido.anota.ai/loja/maktub-11?f=msa" target="_blank" rel="noopener">Ver cardápio completo&nbsp; ↗</a></div>
+      </div>
+    </section>
+
+    <section class="event-banner" id="eventos">
+      <div class="container event-inner">
+        <div class="eyebrow">Eventos & comemorações</div><h2 class="section-heading">Momentos especiais <span>merecem o Maktub</span></h2><p>Do aniversário íntimo à confraternização da empresa, montamos a experiência perfeita para o seu grupo.</p>
+        <div class="event-types">
+          <div class="event-type"><span class="point-icon">✧</span><b>Aniversários</b><p>Uma comemoração à altura, com mesa farta e clima de festa.</p></div>
+          <div class="event-type"><span class="point-icon">▣</span><b>Eventos corporativos</b><p>Jantares e confraternizações que aproximam a sua equipe.</p></div>
+          <div class="event-type"><span class="point-icon">♧</span><b>Reuniões familiares</b><p>O lugar certo para reunir todo mundo em volta da mesa.</p></div>
+          <div class="event-type"><span class="point-icon">◷</span><b>Datas comemorativas</b><p>Celebre cada momento especial com o tempero árabe da casa.</p></div>
+        </div>
+        <a class="btn" href="https://wa.me/5511944199999?text=Ol%C3%A1%2C%20quero%20conversar%20sobre%20um%20evento%20no%20Maktub." target="_blank" rel="noopener">Reserve seu evento&nbsp; ↗</a>
+      </div>
+    </section>
+
+    <section class="gallery-section" id="galeria">
+      <div class="container">
+        <div class="center"><div class="eyebrow">Galeria</div><h2 class="section-heading">Um pouco do <span>nosso mundo</span></h2><p class="section-intro">Da fachada à mesa: um convite para conhecer cada detalhe do Maktub.</p></div>
+        <div class="gallery-grid">
+          <figure class="gallery-item"><img src="assets/fachada.png" alt="Fachada do Maktub em Guarulhos" loading="lazy"><span>Um lugar para chegar</span></figure>
+          <figure class="gallery-item"><img src="assets/fateh-misto.webp" alt="Fateh misto servido no Maktub" loading="lazy"><span>A mesa farta</span></figure>
+          <figure class="gallery-item"><img src="assets/muhammara.webp" alt="Pasta de muhammara com pão sírio" loading="lazy"><span>Sabores de família</span></figure>
+          <figure class="gallery-item"><img src="assets/rodizio-original.png" alt="Sabores do rodízio árabe" loading="lazy"><span>Tradição em cada prato</span></figure>
+          <figure class="gallery-item"><img src="assets/falafel.webp" alt="Falafel com acompanhamento" loading="lazy"><span>Feito com carinho</span></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="reviews-section" id="avaliacoes">
+      <div class="container">
+        <div class="center"><div class="eyebrow">Quem senta à nossa mesa, volta</div><h2 class="section-heading">Palavras que aquecem <span>o coração</span></h2><p class="section-intro">Momentos especiais vividos por quem já passou pelo Maktub.</p></div>
+        <div class="review-grid">
+          <article class="review"><div class="review-stars">★★★★★</div><blockquote>“Porções muito generosas e o sabor da comida feita com carinho. Saímos de lá satisfeitos e felizes.”</blockquote><cite>Carla R.</cite></article>
+          <article class="review"><div class="review-stars">★★★★★</div><blockquote>“Sabores autênticos, daqueles que a gente não encontra fácil. O quibe é a estrela da casa.”</blockquote><cite>Rodrigo A.</cite></article>
+          <article class="review"><div class="review-stars">★★★★★</div><blockquote>“Ambiente acolhedor e atendimento atencioso. Perfeito para um jantar a dois ou em família.”</blockquote><cite>Juliana M.</cite></article>
+          <article class="review"><div class="review-stars">★★★★★</div><blockquote>“Uma joia escondida em Guarulhos! O rodízio vale cada centavo — tudo fresquinho e na medida.”</blockquote><cite>Fernando L.</cite></article>
+          <article class="review"><div class="review-stars">★★★★★</div><blockquote>“Levamos a família para comemorar um aniversário. O mix de carnes é enorme e foi especial.”</blockquote><cite>Patrícia S.</cite></article>
+          <article class="review"><div class="review-stars">★★★★★</div><blockquote>“Os sabores surpreendem. Já estamos planejando voltar para experimentar mais da casa.”</blockquote><cite>Marcos V.</cite></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="visit-band">
+      <div class="container"><h2>Sua mesa no Maktub está esperando</h2><p>Reserve sua mesa e venha viver essa experiência. Vai pedir em casa? Também estamos no delivery.</p><div class="visit-actions"><a class="btn" href="https://wa.me/5511944199999?text=Ol%C3%A1%2C%20gostaria%20de%20reservar%20uma%20mesa%20no%20Maktub." target="_blank" rel="noopener">Reservar mesa&nbsp; ↗</a><a class="btn dark" href="https://pedido.anota.ai/loja/maktub-11?f=msa" target="_blank" rel="noopener">Pedir delivery&nbsp; ↗</a></div></div>
+    </section>
+
+    <section class="location-section" id="contato">
+      <div class="container">
+        <div class="center"><div class="eyebrow">Localização & horários</div><h2 class="section-heading">Fácil de chegar, <span>difícil de esquecer</span></h2><p class="section-intro">Estamos no coração de Vila São José, em Guarulhos — pertinho de você.</p></div>
+        <div class="location-grid">
+          <a class="map-card" href="https://www.google.com/maps/search/?api=1&query=Rua+Tabajara%2C+88%2C+Vila+S%C3%A3o+Jos%C3%A9%2C+Guarulhos%2C+SP" target="_blank" rel="noopener" aria-label="Abrir localização do Maktub no mapa"><div class="map-lines"></div><div class="map-pin"><span>⌖</span></div><div class="map-label">Maktub · Vila São José, Guarulhos</div></a>
+          <div class="contact-stack">
+            <div class="contact-card"><span class="point-icon">⌖</span><div><small>Endereço</small><b>Rua Tabajara, 88 — Vila São José,<br>Guarulhos — SP, 07111-120</b></div></div>
+            <div class="contact-card"><span class="point-icon">⌕</span><div><small>Telefone & WhatsApp</small><a href="https://wa.me/5511944199999" target="_blank" rel="noopener">(11) 94419-9999</a></div></div>
+            <div class="contact-card"><span class="point-icon">◎</span><div><small>Instagram</small><a href="https://instagram.com/maktubclubgru" target="_blank" rel="noopener">@maktubclubgru</a></div></div>
+            <div class="hours-card"><h3>Horário de funcionamento</h3><div class="hours-row"><b>Segunda</b><span>Fechado</span></div><div class="hours-row"><b>Terça a quinta</b><span>18h às 23h</span></div><div class="hours-row"><b>Sexta</b><span>12h às 16h · 18h às 00h</span></div><div class="hours-row"><b>Sábado</b><span>12h às 00h</span></div><div class="hours-row"><b>Domingo</b><span>12h às 23h</span></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq-section" id="faq">
+      <div class="container">
+        <div class="center"><div class="eyebrow">Tudo o que você quer saber</div><h2 class="section-heading">Perguntas <span>frequentes</span></h2><p class="section-intro">Separamos algumas respostas para deixar sua visita ainda mais tranquila.</p></div>
+        <div class="faq-list">
+          <details><summary>O Maktub tem opções vegetarianas?</summary><p>Sim. O cardápio inclui opções como falafel, homus, babaganoush, muhammara, tabule e kibe cru vegano. Consulte a equipe sobre ingredientes e disponibilidade.</p></details>
+          <details><summary>É preciso reservar para o rodízio?</summary><p>Recomendamos consultar a disponibilidade e reservar pelo WhatsApp, especialmente para grupos e comemorações.</p></details>
+          <details><summary>Vocês fazem delivery?</summary><p>Sim. Consulte o cardápio atualizado e faça seu pedido pela loja Maktub na Anota AI.</p></details>
+          <details><summary>O restaurante tem estacionamento?</summary><p>Há vagas na rua em frente e ao redor, além de estacionamentos nas proximidades.</p></details>
+          <details><summary>Posso comemorar meu aniversário no Maktub?</summary><p>Sim. Entre em contato pelo WhatsApp para conversar sobre eventos, grupos e a melhor experiência para sua celebração.</p></details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top"><div><h3>Sabores e novidades, direto para você</h3><p>Acompanhe as novidades da casa e descubra os sabores do Maktub.</p></div><a class="btn small" href="https://instagram.com/maktubclubgru" target="_blank" rel="noopener">Siga no Instagram&nbsp; ↗</a></div>
+      <div class="footer-columns">
+        <div class="footer-about"><img class="footer-logo" src="assets/logo-gold.png" alt="Maktub"><p>Uma viagem ao Oriente Médio sem sair de Guarulhos. Culinária árabe autêntica, preparada com tradição e servida com hospitalidade.</p><div class="socials"><a href="https://instagram.com/maktubclubgru" target="_blank" rel="noopener" aria-label="Instagram">◎</a><a href="https://wa.me/5511944199999" target="_blank" rel="noopener" aria-label="WhatsApp">◉</a></div></div>
+        <div class="footer-col"><h4>Navegação</h4><a href="#inicio">Início</a><a href="#sobre">Sobre</a><a href="#pratos">Pratos</a><a href="#rodizio">Rodízio</a><a href="#eventos">Eventos</a><a href="#galeria">Galeria</a></div>
+        <div class="footer-col"><h4>Contato</h4><p>Rua Tabajara, 88 — Vila São José<br>Guarulhos — SP, 07111-120</p><a href="tel:+5511944199999">(11) 94419-9999</a><a href="https://instagram.com/maktubclubgru" target="_blank" rel="noopener">@maktubclubgru</a></div>
+        <div class="footer-col"><h4>Horários</h4><p>Segunda · Fechado<br>Terça a quinta · 18h às 23h<br>Sexta · 12h às 16h e 18h às 00h<br>Sábado · 12h às 00h<br>Domingo · 12h às 23h</p></div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 Maktub. Restaurante árabe em Guarulhos — SP.</span><span>Feito com sabor e tradição no coração de Guarulhos.</span></div>
+    </div>
+  </footer>
+  <a class="whatsapp-float" href="https://wa.me/5511944199999" target="_blank" rel="noopener" aria-label="Fale com o Maktub pelo WhatsApp">◉</a>
+
+  <script>
+    const menuToggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('#main-nav');
+    menuToggle.addEventListener('click', () => {
+      const isOpen = nav.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuToggle.setAttribute('aria-label', isOpen ? 'Fechar menu' : 'Abrir menu');
+    });
+    nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      nav.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    }));
+    document.querySelectorAll('[data-filter]').forEach(button => button.addEventListener('click', () => {
+      document.querySelectorAll('[data-filter]').forEach(item => item.classList.remove('selected'));
+      button.classList.add('selected');
+      const filter = button.dataset.filter;
+      document.querySelectorAll('.food-card').forEach(card => {
+        card.classList.toggle('hidden', filter !== 'todos' && card.dataset.category !== filter);
+      });
+    }));
+  </script>
+</body>
+</html>
